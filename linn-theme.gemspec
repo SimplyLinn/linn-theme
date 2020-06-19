@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/SimplyLinn/linn-theme"
   spec.license       = "Intentionally no license. For Linn's private use."
 
-  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README)!i) }
+  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_config.yml|_layouts|_includes|_sass|LICENSE|README)!i) }
 
   spec.add_runtime_dependency "jekyll", "~> 4.0"
   spec.add_runtime_dependency "jemoji", "~> 0.11"
