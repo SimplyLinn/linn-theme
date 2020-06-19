@@ -3,4 +3,12 @@
 .jekyll-cache
 .sass-cache
 _site
+_posts
+_rambles
+_vocabs
+_tagviews
 Gemfile.lock
+*.md
+!README.md
+*.html
+style.scss
