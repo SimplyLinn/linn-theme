@@ -1,0 +1,70 @@
+#
+# This file contains configuration flags to customize your site
+#
+
+# Name of your site (displayed in the header)
+name: SITE NAME
+author:
+  name: Linn
+  email: hello@linn.lgbt
+  uri: https://linn.lgbt/
+
+# Short bio or description (displayed in the header)
+description: SITE DESCRIPTION
+
+# Signature at the end of each post
+signature: '– Linn'
+
+# URL of your avatar or profile pic (you could use your GitHub profile pic)
+avatar: /assets/images/linn.png
+image:  /assets/images/linn.png
+
+# Includes an icon in the footer for each username you enter
+footer-links:
+  email: hello@linn.lgbt
+
+collections:
+  vocabs:
+    output: false
+    sort_by: title
+  tagviews:
+    output: true
+    permalink: /tags/:title/
+
+defaults:
+  - scope:
+      type:        "drafts"
+    values:
+      layout:      "post"
+      sitemap:     false
+      comments:    false
+  - scope:
+      type:        "posts"
+    values:
+      layout:      "post"
+
+# Jekyll 3 now only supports Kramdown for Markdown
+kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks
+  input: GFM
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    # Use existing pygments syntax highlighting css
+    css_class: 'highlight'
+
+# Set the Sass partials directory, as we're using @imports
+sass:
+  style: :expanded # You might prefer to minify using :compressed
+
+# Use the following plug-ins
+plugins:
+  - jemoji # emoji
+
+# Exclude these files from your production _site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
