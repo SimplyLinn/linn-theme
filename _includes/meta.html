@@ -3,37 +3,63 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0e0a29" />
+{% if page.image %}
+<meta name="twitter:card" content="summary_large_image" />
+{% else %}
+<meta name="twitter:card" content="summary" />
+{% endif %}
+{% if site.footer-links.twitter %}
+<meta name="twitter:site" content="@{{ site.footer-links.twitter | xml_escape | strip }}" />
+{% endif %}
+{% if page.is_article %}
+{% if page.twitter %}
+<meta name="twitter:creator" content="@{{ page.twitter }}" />
+{% else %}
+{% unless page.twitter == false %}
+<meta name="twitter:creator" content="@{{ site.footer-links.twitter | xml_escape | strip }}" />
+{% endunless %}
+{% endif %}
+<meta property="og:type" content="article" />
+{% if page.collection %}
+<meta property="article:section" content="{{ page.collection | xml_escape | strip }}" />
+{% endif %}
+{% for tag in page.tags %}
+<meta property="article:tag" content="{{ tag | strip_html | xml_escape | strip }}" />
+{% endfor %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema | strip_html | xml_escape | strip }}" />
+{% if page.modified %}
+<meta property="article:modified_time" content="{{ page.modified | date_to_xmlschema | strip_html | xml_escape | strip }}" />
+{% endif %}
+{% else %}
+<meta property="og:type" content="website">
+{% endif %}
 {% if page.excerpt %}
 {% if page.CW and page.CW.size > 0 %}
-<meta name="description" content="CW: {{ page.CW | join: ", " | strip_html | xml_escape }}.
-{{ page.excerpt | strip_html | xml_escape }}" />
-<meta property="og:description" content="CW: {{ page.CW | join: ", " | strip_html | xml_escape }}.
-{{ page.excerpt | strip_html | xml_escape }}" />
+<meta name="description" content="CW: {{ page.CW | join: ", " | strip_html | xml_escape | strip }}.
+{{ page.excerpt | strip_html | xml_escape | strip }}" />
+<meta property="og:description" content="CW: {{ page.CW | join: ", " | strip_html | xml_escape | strip }}.
+{{ page.excerpt | strip_html | xml_escape | strip }}" />
 {% else %}
-<meta name="description" content="{{ page.excerpt | strip_html | xml_escape }}" />
-<meta property="og:description" content="{{ page.excerpt | strip_html | xml_escape }}" />
+<meta name="description" content="{{ page.excerpt | strip_html | xml_escape | strip }}" />
+<meta property="og:description" content="{{ page.excerpt | strip_html | xml_escape | strip }}" />
 {% endif %}
 {% else %}
-<meta name="description" content="{{ site.description | xml_escape }}">
-<meta property="og:description" content="{{ site.description | xml_escape }}" />
+<meta name="description" content="{{ site.description | xml_escape | strip }}">
+<meta property="og:description" content="{{ site.description | xml_escape | strip }}" />
 {% endif %}
 
-{% unless page.thumbnail == false %}
-    {% if page.thumbnail %}
-    <meta name="twitter:image" content="{{ page.thumbnail | absolute_url }}" />
-    <meta property="og:image" content="{{ page.thumbnail | absolute_url }}" />
+{% unless page.image == false %}
+    {% if page.image %}
+    <meta property="og:image" content="{{ page.image | absolute_url }}" />
     {% else %}
-    <meta name="twitter:image" content="{{ site.avatar | absolute_url }}" />
     <meta property="og:image" content="{{ site.avatar | absolute_url }}" />
     {% endif %}
 {% endunless %}
 
-<meta name="author" content="{{ site.name | xml_escape }}" />
+<meta name="author" content="{{ site.author.name | xml_escape | strip }}" />
 
 {% if page.title %}
-<meta property="og:title" content="{{ page.title | xml_escape }}" />
-<meta property="twitter:title" content="{{ page.title | xml_escape }}" />
+<meta property="og:title" content="{{ page.title | xml_escape | strip }}" />
 {% else %}
-<meta property="og:title" content="{{ site.name | xml_escape }}" />
-<meta property="twitter:title" content="{{ site.name | xml_escape }}" />
+<meta property="og:title" content="{{ site.name | xml_escape | strip }}" />
 {% endif %}
