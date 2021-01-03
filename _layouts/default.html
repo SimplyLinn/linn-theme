@@ -20,7 +20,7 @@
     <link rel="alternate" type="application/rss+xml" title="Rambling Madness - {{ site.name }} - {{ site.description }}" href="{{ '/rambles.xml' | relative_url }}" />
     {% if site.jslibs %}{% for lib in site.jslibs %}<script src="{{ lib | relative_url }}" crossorigin="anonymous"></script>{% endfor %}{% endif %}
     {% if page.jslibs %}{% for lib in page.jslibs %}<script src="{{ lib | relative_url }}" crossorigin="anonymous"></script>{% endfor %}{% endif %}
-
+    {% include analytics.html %}
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
 
@@ -52,6 +52,5 @@
         </div>
       </div>
     </div>
-    {% include analytics.html %}
   </body>
 </html>

@@ -1,5 +1,6 @@
 {% if site.plausible %}
 	<!-- Plausible -->
 	<script async defer data-domain="{{ site.plausible.data-domain }}" src="{{ site.plausible.js-file }}"></script>
+	<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 	<!-- End Plausible -->
 {% endif %}
